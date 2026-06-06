@@ -138,10 +138,10 @@ python -m http.server 8080
 
 | Nome | Função |
 |------|--------|
-| [Nome 1] | Desenvolvimento Frontend |
-| [Nome 2] | Documentação Técnica |
-| [Nome 3] | Design e Prototipação |
-| [Nome 4] | Banco de Dados e Arquitetura |
+| Arhur Santos | Desenvolvimento Frontend |
+| Ketleen de Souza | Documentação Técnica |
+| Kenedy Anderson Souza de Castro | Design e Prototipação |
+| Kenedy Anderson Souza de Castro | Banco de Dados e Arquitetura |
 
 ---
 
@@ -155,15 +155,16 @@ python -m http.server 8080
 ## 🎓 Informações Acadêmicas
 
 - **Curso:** Análise e Desenvolvimento de Sistemas
-- **Disciplina:** Projeto Integrador Empresarial (PIE)
-- **Instituição:** [Nome da Instituição]
+- **Disciplina:** Projeto Integrador de Extensão (PIE)
+- - **Professor:** Maykel Deolindo
+- **Instituição:** Universidade Católica Salesiana 
 - **Ano:** 2026
 
 ---
 
 ## 📝 Licença
 
-Este projeto foi desenvolvido para fins acadêmicos como parte do Projeto Integrador Empresarial.
+Este projeto foi desenvolvido para fins acadêmicos como parte do Projeto Integrador de Extensão da Universidade Católita Salesiana .
 
 ---
 
