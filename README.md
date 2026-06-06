@@ -12,7 +12,7 @@
 
 ## 🌐 Demo ao vivo
 
-**👉 [Acesse o EcoGrid aqui](https://SEU-USUARIO.github.io/ecogrid/)**
+**👉 [Acesse o EcoGrid aqui](https://castrokenedy.github.io/ecogrid/)**
 
 > Substitua `SEU-USUARIO` pelo seu nome de usuário do GitHub após publicar via GitHub Pages.
 
