@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoGrid — Gestão Inteligente de Energia</title>
+  <meta name="description" content="Plataforma SaaS corporativa para monitoramento e gestão inteligente de energia elétrica. Dashboards em tempo real, automação IoT e relatórios de eficiência energética." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <span class="logo-icon">⚡</span>
+        <span>Eco<strong>Grid</strong></span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#solucao">Solução</a></li>
+        <li><a href="#beneficios">Benefícios</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#contato" class="nav__cta">Começar agora</a></li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero__bg">
+      <div class="grid-lines"></div>
+      <div class="glow glow--green"></div>
+      <div class="glow glow--teal"></div>
+    </div>
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="badge-dot"></span>
+        Plataforma SaaS de Energia — MVP
+      </div>
+      <h1 class="hero__title">
+        Inteligência energética<br/>
+        <span class="hero__title--accent">para o seu negócio</span>
+      </h1>
+      <p class="hero__sub">
+        Monitore, analise e reduza o consumo elétrico da sua empresa em tempo real.
+        Dashboards analíticos, alertas automáticos e integração com dispositivos IoT.
+      </p>
+      <div class="hero__actions">
+        <a href="#dashboard" class="btn btn--primary">Ver o dashboard</a>
+        <a href="#solucao" class="btn btn--ghost">Como funciona</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__num">40%</span>
+          <span class="stat__label">redução de desperdício</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">100%</span>
+          <span class="stat__label">visibilidade do consumo</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">24/7</span>
+          <span class="stat__label">monitoramento ativo</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <div class="dashboard-preview">
+        <div class="dp__header">
+          <div class="dp__dots"><span></span><span></span><span></span></div>
+          <span class="dp__title">EcoGrid — Dashboard</span>
+          <span class="dp__badge live">● Ao vivo</span>
+        </div>
+        <div class="dp__kpis">
+          <div class="kpi kpi--green">
+            <span class="kpi__icon">⚡</span>
+            <span class="kpi__value" data-target="42.8">0</span>
+            <span class="kpi__unit">kW</span>
+            <span class="kpi__label">Consumo atual</span>
+            <span class="kpi__delta down">▼ 12% hoje</span>
+          </div>
+          <div class="kpi kpi--teal">
+            <span class="kpi__icon">💰</span>
+            <span class="kpi__value" data-target="38">0</span>
+            <span class="kpi__unit">%</span>
+            <span class="kpi__label">Economia gerada</span>
+            <span class="kpi__delta up">▲ 5% este mês</span>
+          </div>
+          <div class="kpi kpi--blue">
+            <span class="kpi__icon">📡</span>
+            <span class="kpi__value" data-target="24">0</span>
+            <span class="kpi__unit">disp.</span>
+            <span class="kpi__label">Dispositivos online</span>
+            <span class="kpi__delta up">▲ 2 novos</span>
+          </div>
+          <div class="kpi kpi--amber">
+            <span class="kpi__icon">🔔</span>
+            <span class="kpi__value" data-target="3">0</span>
+            <span class="kpi__unit">alertas</span>
+            <span class="kpi__label">Alertas ativos</span>
+            <span class="kpi__delta warn">⚠ revisar</span>
+          </div>
+        </div>
+        <div class="dp__chart-area">
+          <div class="dp__chart-label">Consumo das últimas 24h (kWh)</div>
+          <canvas id="miniChart"></canvas>
+        </div>
+        <div class="dp__devices">
+          <div class="dp__device online">
+            <span class="dev__dot"></span>
+            <span class="dev__name">Sala Reunião A</span>
+            <span class="dev__val">3.2 kW</span>
+          </div>
+          <div class="dp__device online">
+            <span class="dev__dot"></span>
+            <span class="dev__name">Servidor Principal</span>
+            <span class="dev__val">8.7 kW</span>
+          </div>
+          <div class="dp__device offline">
+            <span class="dev__dot"></span>
+            <span class="dev__name">Ar-cond. Andar 3</span>
+            <span class="dev__val">offline</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="problema" id="problema">
+    <div class="container">
+      <div class="section-tag">O problema</div>
+      <h2 class="section-title">Sua empresa gasta mais energia do que deveria</h2>
+      <p class="section-sub">Sem visibilidade, não há controle. Sem controle, há desperdício.</p>
+      <div class="problema__grid">
+        <div class="problema__card" style="--i:0">
+          <div class="pcard__icon">📊</div>
+          <h3>Nenhum dado centralizado</h3>
+          <p>Informações de consumo dispersas em planilhas, faturas e medidores físicos, sem integração entre elas.</p>
+        </div>
+        <div class="problema__card" style="--i:1">
+          <div class="pcard__icon">🔦</div>
+          <h3>Desperdício invisível</h3>
+          <p>Iluminação, ar-condicionado e equipamentos operando fora do horário ideal sem que ninguém saiba.</p>
+        </div>
+        <div class="problema__card" style="--i:2">
+          <div class="pcard__icon">📉</div>
+          <h3>Decisões sem base real</h3>
+          <p>Gestores tomando decisões de eficiência energética sem indicadores confiáveis ou histórico de consumo.</p>
+        </div>
+        <div class="problema__card" style="--i:3">
+          <div class="pcard__icon">💸</div>
+          <h3>Contas crescendo todo mês</h3>
+          <p>Sem automação e sem alertas, o custo energético sobe progressivamente sem nenhum mecanismo de contenção.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section class="solucao" id="solucao">
+    <div class="container">
+      <div class="section-tag">A solução</div>
+      <h2 class="section-title">Uma plataforma que transforma dados em <span class="accent">economia real</span></h2>
+      <div class="solucao__layout">
+        <div class="solucao__steps">
+          <div class="step active" data-step="0">
+            <div class="step__num">01</div>
+            <div class="step__body">
+              <h3>Coleta de dados</h3>
+              <p>Dispositivos inteligentes e sensores IoT capturam o consumo em tempo real de cada ponto elétrico da empresa.</p>
+            </div>
+          </div>
+          <div class="step" data-step="1">
+            <div class="step__num">02</div>
+            <div class="step__body">
+              <h3>Processamento e análise</h3>
+              <p>O backend processa as leituras, identifica padrões, anomalias e calcula métricas de eficiência automaticamente.</p>
+            </div>
+          </div>
+          <div class="step" data-step="2">
+            <div class="step__num">03</div>
+            <div class="step__body">
+              <h3>Visualização e alertas</h3>
+              <p>Dashboards intuitivos exibem KPIs em tempo real. Alertas automáticos notificam quando o consumo foge do padrão.</p>
+            </div>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step__num">04</div>
+            <div class="step__body">
+              <h3>Automação inteligente</h3>
+              <p>Regras configuráveis acionam ou desligam dispositivos automaticamente com base em horários, ocupação e consumo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="solucao__visual">
+          <div class="flow-diagram">
+            <div class="flow-node" id="fn0">
+              <span>🔌</span>
+              <small>Dispositivos IoT</small>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" id="fn1">
+              <span>📡</span>
+              <small>MQTT / API</small>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" id="fn2">
+              <span>🗄️</span>
+              <small>PostgreSQL</small>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" id="fn3">
+              <span>📊</span>
+              <small>Dashboard</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="beneficios" id="beneficios">
+    <div class="container">
+      <div class="section-tag">Benefícios</div>
+      <h2 class="section-title">Tudo que sua empresa precisa para controlar o consumo</h2>
+      <div class="beneficios__grid">
+        <div class="bcard">
+          <div class="bcard__header">
+            <span class="bcard__icon">📈</span>
+            <h3>Dashboard em tempo real</h3>
+          </div>
+          <p>Visualize todos os indicadores de consumo, eficiência e economia em um painel centralizado, atualizado ao vivo.</p>
+        </div>
+        <div class="bcard">
+          <div class="bcard__header">
+            <span class="bcard__icon">🔔</span>
+            <h3>Alertas inteligentes</h3>
+          </div>
+          <p>Receba notificações automáticas quando o consumo ultrapassar limites definidos ou quando um dispositivo ficar offline.</p>
+        </div>
+        <div class="bcard">
+          <div class="bcard__header">
+            <span class="bcard__icon">⚙️</span>
+            <h3>Automação de dispositivos</h3>
+          </div>
+          <p>Configure regras para ligar e desligar equipamentos automaticamente por horário, ocupação ou consumo detectado.</p>
+        </div>
+        <div class="bcard">
+          <div class="bcard__header">
+            <span class="bcard__icon">📋</span>
+            <h3>Relatórios analíticos</h3>
+          </div>
+          <p>Exporte relatórios detalhados de consumo diário, mensal e histórico comparativo entre períodos e setores.</p>
+        </div>
+        <div class="bcard">
+          <div class="bcard__header">
+            <span class="bcard__icon">🗄️</span>
+            <h3>Gestão de dispositivos</h3>
+          </div>
+          <p>Cadastre, monitore e gerencie todos os equipamentos elétricos da empresa em um único lugar com status em tempo real.</p>
+        </div>
+        <div class="bcard">
+          <div class="bcard__header">
+            <span class="bcard__icon">🌱</span>
+            <h3>Impacto ambiental</h3>
+          </div>
+          <p>Acompanhe a redução de emissões de CO₂ associada à sua economia de energia e contribua com metas de sustentabilidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD PREVIEW -->
+  <section class="dash-section" id="dashboard">
+    <div class="container">
+      <div class="section-tag">Preview</div>
+      <h2 class="section-title">Uma plataforma feita para quem decide</h2>
+      <p class="section-sub">Interface limpa, dados claros. Tudo o que você precisa sem o que não precisa.</p>
+      <div class="tabs">
+        <button class="tab active" data-tab="dashboard">Dashboard</button>
+        <button class="tab" data-tab="analytics">Analytics</button>
+        <button class="tab" data-tab="dispositivos">Dispositivos</button>
+      </div>
+      <div class="tab-content active" id="tab-dashboard">
+        <div class="fullscreen-dash">
+          <div class="fsd__sidebar">
+            <div class="fsd__logo">⚡ EcoGrid</div>
+            <nav class="fsd__nav">
+              <a class="fsd__navitem active">📊 Dashboard</a>
+              <a class="fsd__navitem">📈 Analytics</a>
+              <a class="fsd__navitem">🔌 Dispositivos</a>
+              <a class="fsd__navitem">🔔 Alertas</a>
+              <a class="fsd__navitem">📋 Relatórios</a>
+              <a class="fsd__navitem">⚙️ Configurações</a>
+            </nav>
+          </div>
+          <div class="fsd__main">
+            <div class="fsd__topbar">
+              <div>
+                <h2>Visão Geral</h2>
+                <span>Hoje, 06 de junho de 2026</span>
+              </div>
+              <div class="fsd__topright">
+                <span class="live-indicator">● Ao vivo</span>
+              </div>
+            </div>
+            <div class="fsd__kpis">
+              <div class="fsd__kpi">
+                <span>⚡ Consumo Atual</span>
+                <strong>42,8 kW</strong>
+                <em class="down">▼ 12%</em>
+              </div>
+              <div class="fsd__kpi green">
+                <span>💰 Economia Mensal</span>
+                <strong>R$ 3.240</strong>
+                <em class="up">▲ 18%</em>
+              </div>
+              <div class="fsd__kpi blue">
+                <span>📡 Dispositivos</span>
+                <strong>24 / 27</strong>
+                <em>online</em>
+              </div>
+              <div class="fsd__kpi amber">
+                <span>🔔 Alertas</span>
+                <strong>3 ativos</strong>
+                <em class="warn">revisar</em>
+              </div>
+            </div>
+            <div class="fsd__charts">
+              <div class="fsd__chart-main">
+                <div class="chart-title">Consumo das últimas 24h</div>
+                <canvas id="dashChart" height="120"></canvas>
+              </div>
+              <div class="fsd__chart-side">
+                <div class="chart-title">Por setor</div>
+                <canvas id="pieChart" height="120"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-analytics">
+        <div class="analytics-preview">
+          <div class="ap__header">
+            <h3>Análise de Consumo</h3>
+            <div class="ap__filters">
+              <span class="filter active">7 dias</span>
+              <span class="filter">30 dias</span>
+              <span class="filter">3 meses</span>
+            </div>
+          </div>
+          <canvas id="analyticsChart" height="180"></canvas>
+          <div class="ap__metrics">
+            <div class="ap__metric">
+              <span>Consumo total</span>
+              <strong>1.284 kWh</strong>
+            </div>
+            <div class="ap__metric">
+              <span>Média diária</span>
+              <strong>183 kWh</strong>
+            </div>
+            <div class="ap__metric">
+              <span>Pico registrado</span>
+              <strong>248 kWh</strong>
+            </div>
+            <div class="ap__metric green">
+              <span>Economia vs. mês anterior</span>
+              <strong>▼ 22%</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-dispositivos">
+        <div class="devices-preview">
+          <table class="devices-table">
+            <thead>
+              <tr>
+                <th>Dispositivo</th>
+                <th>Setor</th>
+                <th>Potência</th>
+                <th>Consumo hoje</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Ar-cond. Diretoria</td><td>Diretoria</td><td>3.500 W</td><td>14,2 kWh</td><td><span class="badge online">Online</span></td></tr>
+              <tr><td>Iluminação Andar 1</td><td>Administrativo</td><td>800 W</td><td>5,6 kWh</td><td><span class="badge online">Online</span></td></tr>
+              <tr><td>Servidor Principal</td><td>TI</td><td>2.200 W</td><td>52,8 kWh</td><td><span class="badge online">Online</span></td></tr>
+              <tr><td>Ar-cond. Andar 3</td><td>RH</td><td>2.800 W</td><td>—</td><td><span class="badge offline">Offline</span></td></tr>
+              <tr><td>Câmeras Segurança</td><td>Segurança</td><td>120 W</td><td>2,9 kWh</td><td><span class="badge online">Online</span></td></tr>
+              <tr><td>Iluminação Estoque</td><td>Logística</td><td>600 W</td><td>4,2 kWh</td><td><span class="badge online">Online</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIAS -->
+  <section class="tech-section">
+    <div class="container">
+      <div class="section-tag">Tecnologia</div>
+      <h2 class="section-title">Stack moderno e escalável</h2>
+      <div class="tech-grid">
+        <div class="tech-item"><span>⚛️</span><strong>React.js</strong><small>Frontend SPA</small></div>
+        <div class="tech-item"><span>🎨</span><strong>Tailwind CSS</strong><small>Estilização</small></div>
+        <div class="tech-item"><span>📊</span><strong>Recharts</strong><small>Gráficos</small></div>
+        <div class="tech-item"><span>🗄️</span><strong>PostgreSQL</strong><small>Banco de dados</small></div>
+        <div class="tech-item"><span>⚡</span><strong>Supabase</strong><small>Backend as Service</small></div>
+        <div class="tech-item"><span>🚀</span><strong>Vercel</strong><small>Deploy contínuo</small></div>
+        <div class="tech-item"><span>📡</span><strong>MQTT</strong><small>Protocolo IoT</small></div>
+        <div class="tech-item"><span>🔌</span><strong>ESP32</strong><small>Hardware (futuro)</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTATO -->
+  <section class="cta-section" id="contato">
+    <div class="cta__bg">
+      <div class="glow glow--green"></div>
+    </div>
+    <div class="container cta__inner">
+      <h2>Pronto para monitorar sua energia?</h2>
+      <p>Comece agora com o EcoGrid e tenha visibilidade total sobre o consumo elétrico da sua empresa.</p>
+      <a href="https://github.com" class="btn btn--primary btn--large" target="_blank">Ver no GitHub</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo-icon">⚡</span>
+        <span>Eco<strong>Grid</strong></span>
+        <p>Plataforma inteligente de monitoramento e gestão energética.</p>
+      </div>
+      <div class="footer__links">
+        <span>Projeto Integrador Empresarial · Curso Técnico em Desenvolvimento de Sistemas · 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
