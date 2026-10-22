@@ -1,49 +1,61 @@
-# Parte 2 — Dashboard Eco Grid (PIE, 4º período)
+# Eco Grid — Entrega completa do frontend (Parte 2)
 
-## Responsabilidade e limites
-Esta entrega altera somente o frontend do dashboard. API, SQLite, simulador, contratos e módulo Analytics permanecem sob responsabilidade dos outros integrantes. A landing page estática foi preservada.
+## Escopo e propriedade
+Esta contribuição implementa a interface de dashboard do PIE ADS 4º período. Mantém inalterados `apps/api`, `packages/contracts`, `packages/simulator`, `packages/analytics` e `apps/web/src/features/analytics`. O módulo de análises/relatórios permanece a cargo do integrante 3.
 
-## Funcionalidades entregues
-- Visão geral com consumo (kWh), custo estimado (R$), cobertura e quantidade de dispositivos.
-- Filtros de ambiente, datas UTC (fim exclusivo) e tarifa fictícia.
-- Inventário ilustrativo com potência nominal por dispositivo e ambiente.
-- Tratamento de carregamento, erros, período vazio e tentativa de reconexão.
-- Indicador visual acessível de cobertura dos dados.
-- Identificação explícita dos dados simulados.
+## Funcionalidades do frontend
+- Layout responsivo com menu lateral, cabeçalho, indicação do ambiente demonstrativo e navegação entre módulos.
+- Visão geral: consumo registrado, custo estimado, cobertura de leituras, quantidade de equipamentos.
+- Gráfico SVG acessível de consumo por dia UTC.
+- Gráfico de barras horizontais de energia acumulada por equipamento.
+- Inventário com nome, ambiente, potência nominal (W), consumo no período (kWh) e origem simulada.
+- Histórico com gráfico e tabela diária.
+- Indicadores de média diária, potência nominal total e leituras ausentes.
+- Filtros por ambiente, data inicial/final exclusiva e tarifa fictícia, com validação de 31 dias.
+- Estados de carregamento, falha de API, ausência de dados e cobertura parcial; botão de nova tentativa.
+- Sem dependências de bibliotecas gráficas adicionais.
 
-## Fontes de dados
-- `GET /api/v1/environments` e `GET /api/v1/summary`: dados da API local já existente.
-- `demoDevices` e `demoEnvironments` de `@ecogrid/contracts`: catálogo fictício, sem telemetria em tempo real.
-- Tarifa de R$ 0,80/kWh: valor ilustrativo editável, não tarifa oficial.
-- Nenhum cálculo de economia real foi implementado, pois não existe medição antes/depois validada.
+## Integração real com a base simulada
+O frontend usa os endpoints já existentes:
+- `GET /api/v1/environments`
+- `GET /api/v1/devices?environmentId=...`
+- `GET /api/v1/readings?from=...&to=...&environmentId=...`
+- `GET /api/v1/summary?from=...&to=...&environmentId=...&tariffBrlPerKWh=...`
 
-## Execução
+As agregações dos gráficos são realizadas sobre leituras recebidas da API, e não sobre números hardcoded. A API usa SQLite com seed fictícia.
+
+## Executar e verificar
 Requer Node.js 24.
 ```bash
+git switch feature/dashboard-pie-semestre
 npm ci
 npm run db:seed
+npm run check
+npm test
+npm run build
 npm run dev
 ```
-Acesse http://localhost:5173. Para validação: `npm run check`, `npm test` e `npm run build`.
+Abrir http://localhost:5173. Existe também o workflow `.github/workflows/frontend-ci.yml` para verificação automatizada no GitHub.
 
-## Roteiro de demonstração
-1. Mostrar o aviso de dados simulados.
-2. Explicar os quatro indicadores e sua origem.
-3. Alterar o filtro para laboratório e aplicar.
-4. Alterar a tarifa e demonstrar a estimativa financeira.
-5. Mostrar a lista de dispositivos e diferenciar potência nominal (W) de energia (kWh).
-6. Selecionar período sem leituras e explicar o estado vazio.
-7. Explicar que hardware, economia pós-implantação e automações são evolução futura.
+## Roteiro de apresentação
+1. Mostrar aviso de dados simulados e explicar a arquitetura React → Fastify → SQLite.
+2. Apresentar os quatro KPIs e a diferença entre kW (potência) e kWh (energia).
+3. Navegar entre visão geral, equipamentos e histórico.
+4. Filtrar por laboratório e observar a atualização dos gráficos e da tabela.
+5. Alterar a tarifa fictícia e demonstrar a atualização do custo estimado.
+6. Selecionar período sem leituras para demonstrar tratamento de ausência de dados.
+7. Desligar a API local para demonstrar o estado de erro e o botão de nova tentativa.
+8. Explicar que relatórios CSV e alertas pertencem ao módulo do outro integrante.
 
-## Critérios de aceite para revisão
-- Filtros alteram a consulta à API, não valores fictícios inseridos no componente.
-- Estados de carregamento, erro e ausência de dados são legíveis.
-- Não há alterações em `apps/api`, `packages/contracts`, `packages/simulator` ou `packages/analytics`.
-- Os três comandos de validação passam em ambiente local.
-- Revisão humana antes do merge.
+## Critérios de aceite
+- O painel exibe resultados consistentes com `/api/v1/summary` e `/api/v1/readings`.
+- A interface é utilizável em celular e desktop, com tabelas roláveis.
+- Acessibilidade básica: navegação por teclado, estados de carregamento/erro, tabelas com cabeçalhos, gráficos com rótulos textuais.
+- O grupo revisa o PR e executa `npm run check`, `npm test` e `npm run build` antes do merge.
+- Não há alegação de economia real, monitoramento ao vivo ou controle físico de dispositivos.
 
-## Pendências fora do escopo
-- Gráfico histórico real: exige endpoint de séries temporais/leituras.
-- Relatórios e exportação CSV: Parte 3.
-- Integração física de IoT: roadmap futuro.
-- Resultados de economia: somente após linha de base e medições reais.
+## Limitações explícitas
+Os dados são fictícios, com intervalo padrão 12–19/10/2026 UTC. O custo é kWh × tarifa fictícia, não fatura real. Não há linha de base validada para percentual de economia. O frontend não altera dispositivos nem fornece login. Não foi feito deploy público da API.
+
+## Evidências
+Código versionado, commits da branch e Pull Request #2. Testes unitários das agregações em `EnergyCharts.test.ts`. Execução efetiva do pipeline precisa ser conferida na aba Actions antes da aprovação.
