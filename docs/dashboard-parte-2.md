@@ -59,3 +59,8 @@ Os dados são fictícios, com intervalo padrão 12–19/10/2026 UTC. O custo é 
 
 ## Evidências
 Código versionado, commits da branch e Pull Request #2. Testes unitários das agregações em `EnergyCharts.test.ts`. Execução efetiva do pipeline precisa ser conferida na aba Actions antes da aprovação.
+
+## Experimento de escalabilidade (isolado)
+Executar `node apps/web/benchmarks/energy-readings.mjs` para gerar e somar 705.319 leituras fictícias em 71 lotes de até 10 mil registros. Não grava no SQLite, não chama a API e não mede a renderização React. O resultado depende do hardware e da versão do Node.
+
+Execução de referência em ambiente de desenvolvimento (Node v22.16.0): 458,7 ms; pico observado de heap 31,9 MiB; 705.319 registros; 71 lotes. Esses números são **somente do benchmark isolado**, não constituem teste de carga do sistema Eco Grid integrado. Para apresentação, descreva como prova de conceito de processamento em lotes, não como solução de incidente ocorrido no Eco Grid. O projeto completo requer Node 24.
